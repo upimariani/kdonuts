@@ -1,5 +1,5 @@
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
+<section class="breadcrumb-section set-bg" data-setbg="<?= base_url('asset/ogani-master/') ?>img/little.png">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -19,89 +19,82 @@
 <!-- Checkout Section Begin -->
 <section class="checkout spad">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h6><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click here</a> to enter your code
-                </h6>
-            </div>
-        </div>
+
         <div class="checkout__form">
             <h4>Billing Details</h4>
-            <form action="#">
+            <form action="<?= base_url('pelanggan/ccheckout/checkout') ?>" method="POST">
+                <?php
+                $i = 1;
+                $j = 1;
+                foreach ($this->cart->contents() as $items) {
+                    $id_pemesanan = random_string('alnum', 5);
+                    echo form_hidden('qty' . $i++, $items['qty']);
+                    echo form_hidden('id_pemesanan' . $j++, $id_pemesanan);
+                }
+                ?>
+                <input type="text" name="total" class="price">
+                <?php
+                $id_transaksi = date('Ymd') . strtoupper(random_string('alnum', 8));
+                ?>
+                <input type="text" name="id_transaksi" value="<?= $id_transaksi ?>">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="checkout__input">
-                                    <p>Fist Name<span>*</span></p>
+                                    <p>Atas Nama<span>*</span></p>
                                     <input type="text">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="checkout__input">
-                                    <p>Last Name<span>*</span></p>
+                                    <p>No Telepon<span>*</span></p>
                                     <input type="text">
                                 </div>
                             </div>
                         </div>
-                        <div class="checkout__input">
-                            <p>Country<span>*</span></p>
-                            <input type="text">
-                        </div>
-                        <div class="checkout__input">
-                            <p>Address<span>*</span></p>
-                            <input type="text" placeholder="Street Address" class="checkout__input__add">
-                            <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
-                        </div>
-                        <div class="checkout__input">
-                            <p>Town/City<span>*</span></p>
-                            <input type="text">
-                        </div>
-                        <div class="checkout__input">
-                            <p>Country/State<span>*</span></p>
-                            <input type="text">
-                        </div>
-                        <div class="checkout__input">
-                            <p>Postcode / ZIP<span>*</span></p>
-                            <input type="text">
+                        <p>Dimohon untuk mengisi alamat pengiriman dengan benar.</p>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>RT<span>*</span></p>
+                                    <input type="text" name="rt" placeholder="Masukkan RT">
+                                    <?= form_error('rt', '<small class="text-danger">', '</small>') ?>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>RW<span>*</span></p>
+                                    <input type="text" name="rw" placeholder="Masukkan RW" class="checkout__input__add">
+                                    <?= form_error('rw', '<small class="text-danger">', '</small>') ?>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="checkout__input">
-                                    <p>Phone<span>*</span></p>
-                                    <input type="text">
+                                    <p>Alamat<span>*</span></p>
+                                    <input type="text" name="alamat" placeholder="Masukkan Alamat Lengkap">
+                                    <?= form_error('alamat', '<small class="text-danger">', '</small>') ?>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="checkout__input">
-                                    <p>Email<span>*</span></p>
-                                    <input type="text">
+                                    <p>Desa/Kelurahan<span>*</span></p>
+                                    <select name="desa_kel" id="ongkir" class="form-control">
+                                        <option value="">---Pilih Desa/Kelurahan---</option>
+                                        <?php
+                                        foreach ($ongkir as $key => $value) {
+                                        ?>
+                                            <option data-ongkir="Rp. <?= number_format($value->ongkir) ?>" data-price="<?= $value->ongkir + $this->cart->total() ?>" data-total="Rp. <?= number_format($value->ongkir + $this->cart->total()) ?>" value="<?= $value->id_ongkir ?>"><?= $value->desa_kel ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <?= form_error('desa_kel', '<small class="text-danger">', '</small>') ?>
                                 </div>
                             </div>
-                        </div>
-                        <div class="checkout__input__checkbox">
-                            <label for="acc">
-                                Create an account?
-                                <input type="checkbox" id="acc">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                        <p>Create an account by entering the information below. If you are a returning customer
-                            please login at the top of the page</p>
-                        <div class="checkout__input">
-                            <p>Account Password<span>*</span></p>
-                            <input type="text">
-                        </div>
-                        <div class="checkout__input__checkbox">
-                            <label for="diff-acc">
-                                Ship to a different address?
-                                <input type="checkbox" id="diff-acc">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                        <div class="checkout__input">
-                            <p>Order notes<span>*</span></p>
-                            <input type="text" placeholder="Notes about your order, e.g. special notes for delivery.">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
@@ -109,36 +102,20 @@
                             <h4>Your Order</h4>
                             <div class="checkout__order__products">Products <span>Total</span></div>
                             <ul>
-                                <li>Vegetable’s Package <span>$75.99</span></li>
-                                <li>Fresh Vegetable <span>$151.99</span></li>
-                                <li>Organic Bananas <span>$53.99</span></li>
+                                <?php
+                                foreach ($this->cart->contents() as $key => $value) {
+                                ?>
+                                    <li><?= $value['name'] ?> <span>Rp. <?= number_format($value['price'] * $value['qty']) ?></span></li>
+                                <?php
+                                }
+                                ?>
+
                             </ul>
-                            <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
-                            <div class="checkout__order__total">Total <span>$750.99</span></div>
-                            <div class="checkout__input__checkbox">
-                                <label for="acc-or">
-                                    Create an account?
-                                    <input type="checkbox" id="acc-or">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua.</p>
-                            <div class="checkout__input__checkbox">
-                                <label for="payment">
-                                    Check Payment
-                                    <input type="checkbox" id="payment">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="checkout__input__checkbox">
-                                <label for="paypal">
-                                    Paypal
-                                    <input type="checkbox" id="paypal">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <button type="submit" class="site-btn">PLACE ORDER</button>
+                            <div class="checkout__order__subtotal">Subtotal <span>Rp. <?= number_format($this->cart->total())  ?></span></div>
+                            <div class="checkout__order__subtotal">Shipping <span class="ongkir"></span></div>
+                            <div class="checkout__order__total">Total <span class="total"></span></div>
+
+                            <button type="submit" class="site-btn">CHECKOUT</button>
                         </div>
                     </div>
                 </div>

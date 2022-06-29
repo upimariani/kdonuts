@@ -82,7 +82,20 @@
 <script src="<?= base_url('asset/ogani-master/') ?>js/owl.carousel.min.js"></script>
 <script src="<?= base_url('asset/ogani-master/') ?>js/main.js"></script>
 
+<script>
+    console.log = function() {}
+    $("#ongkir").on('change', function() {
+        $(".ongkir").html($(this).find(':selected').attr('data-ongkir'));
+        $(".ongkir").val($(this).find(':selected').attr('data-ongkir'));
 
+        $(".total").html($(this).find(':selected').attr('data-total'));
+        $(".total").val($(this).find(':selected').attr('data-total'));
+
+        $(".price").html($(this).find(':selected').attr('data-price'));
+        $(".price").val($(this).find(':selected').attr('data-price'));
+
+    });
+</script>
 
 </body>
 

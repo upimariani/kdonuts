@@ -21,6 +21,15 @@
 <!-- custom js -->
 <script src="<?= base_url('asset/pluto-1.0.0/') ?>js/custom.js"></script>
 <script src="<?= base_url('asset/pluto-1.0.0/') ?>js/chart_custom_style1.js"></script>
+<script>
+    console.log = function() {}
+    $("#produk").on('change', function() {
+
+        $(".harga").html($(this).find(':selected').attr('data-harga'));
+        $(".harga").val($(this).find(':selected').attr('data-harga'));
+
+    });
+</script>
 </body>
 
 </html>

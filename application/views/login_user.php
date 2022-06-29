@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="login_form">
-                        <form>
+                        <form action="<?= base_url('cLogin_user') ?>" method="post">
                             <fieldset>
                                 <div class="field">
                                     <label class="label_field">Username</label>
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="field margin_0">
                                     <label class="label_field hidden">hidden label</label>
-                                    <button class="main_bt">Sign In</button>
+                                    <button type="submit" class="main_bt">Sign In</button>
                                 </div>
                             </fieldset>
                         </form>

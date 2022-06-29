@@ -14,7 +14,7 @@
                 <div class="white_shd full margin_bottom_30">
                     <div class="full graph_head">
                         <div class="heading1 margin_0">
-                            <h2>Informasi <small>( Pesanan Diproses )</small></h2>
+                            <h2>Informasi <small>( Pesanan Selesai )</small></h2>
                         </div>
                     </div>
                     <div class="full price_table padding_infor_info">
@@ -34,7 +34,7 @@
                                         <tbody>
                                             <?php
                                             $no = 1;
-                                            foreach ($transaksi['diproses'] as $key => $value) {
+                                            foreach ($transaksi['selesai'] as $key => $value) {
                                             ?>
                                                 <tr>
                                                     <td><?= $no++ ?></td>

@@ -4,9 +4,9 @@
         <div class="row column_title">
             <div class="col-md-12">
                 <div class="page_title">
-                    <h2>Kelola Data Produk</h2>
+                    <h2>Kelola Data Diskon</h2>
                 </div>
-                <a href="<?= base_url('admin/cproduk/createproduk') ?>" class="btn btn-info mb-5">Create New Produk</a>
+                <a href="<?= base_url('admin/cdiskon/creatediskon') ?>" class="btn btn-info mb-5">Create New Diskon</a>
             </div>
         </div>
         <?php
@@ -26,7 +26,7 @@
                 <div class="white_shd full margin_bottom_30">
                     <div class="full graph_head">
                         <div class="heading1 margin_0">
-                            <h2>Informasi Produk Kdonuts</h2>
+                            <h2>Informasi Diskon</h2>
                         </div>
                     </div>
                     <div class="table_section padding_infor_info">
@@ -35,28 +35,29 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Gambar</th>
                                         <th>Nama Produk</th>
-                                        <th>Deskripsi</th>
-                                        <th>Stok</th>
-                                        <th>Harga</th>
+                                        <th>Nama Diskon</th>
+                                        <th>Harga Sebelum Diskon</th>
+                                        <th>Diskon</th>
+                                        <th>Harga Setelah Diskon</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    foreach ($produk as $key => $value) {
+                                    foreach ($diskon as $key => $value) {
                                     ?>
+
                                         <tr>
-                                            <td><?= $no++ ?></td>
-                                            <td><img style="width: 100px;" src="<?= base_url('asset/foto-produk/' . $value->gambar) ?>"></td>
+                                            <td><?= $no++ ?>.</td>
                                             <td><?= $value->nama_barang ?></td>
-                                            <td><?= $value->deskripsi ?></td>
-                                            <td><?= $value->qty_barang ?></td>
+                                            <td><?= $value->nama_diskon ?></td>
                                             <td>Rp. <?= number_format($value->harga_barang)  ?></td>
-                                            <td><a href="<?= base_url('admin/cproduk/delete/' . $value->id_barang) ?>" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
-                                                <a href="<?= base_url('admin/cproduk/edit/' . $value->id_barang) ?>" class="btn btn-outline-warning"><i class="fa fa-edit"></i></a>
+                                            <td><?= $value->diskon ?>%</td>
+                                            <td>Rp. <?= number_format($value->harga_barang - (($value->diskon / 100) * $value->harga_barang)) ?></td>
+                                            <td><a href="<?= base_url('admin/cdiskon/delete/' . $value->id_diskon) ?>" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                                <a href="<?= base_url('admin/cdiskon/edit/' . $value->id_diskon) ?>" class="btn btn-outline-warning"><i class="fa fa-edit"></i></a>
                                             </td>
                                         </tr>
                                     <?php
@@ -64,6 +65,15 @@
                                     ?>
                                 </tbody>
                             </table>
+                            <!-- <form action="<?= base_url('admin/cdiskon/hitung') ?>" method="POST">
+                                <input type="loan" name="loan">
+                                <select name="type">
+                                    <option value="1">Type 1</option>
+                                    <option value="1">Type 2</option>
+                                    <option value="1">Type 3</option>
+                                </select>
+                                <button type="submit">Hitung</button>
+                            </form> -->
                         </div>
                     </div>
                 </div>
