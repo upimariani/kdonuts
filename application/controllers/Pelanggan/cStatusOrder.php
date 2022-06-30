@@ -13,6 +13,7 @@ class cStatusOrder extends CI_Controller
 
     public function index()
     {
+        $this->protect->protect();
         $data = array(
             'transaksi' => $this->mTransaksi->status_order()
         );
@@ -61,13 +62,31 @@ class cStatusOrder extends CI_Controller
             $status = array(
                 'status_pengiriman' => '1'
             );
-            $this->db->where('id_transaksi', $id);
-            $this->db->update('pengiriman', $status);
+            $this->mTransaksi->status($id, $status);
 
 
             $this->session->set_flashdata('success', 'Data Bukti Pembayaran Berhasil Dikirim!');
             redirect('pelanggan/cstatusorder/detail_pesanan/' . $id);
         }
+    }
+    public function diterima($id)
+    {
+        $data = array(
+            'status_pengiriman' => '4'
+        );
+        $this->mTransaksi->status($id, $data);
+        $this->session->set_flashdata('success', 'Pesanan Sudah Diterima! Pesanan Selesai...');
+        redirect('pelanggan/cstatusorder/detail_pesanan/' . $id);
+    }
+    public function rating($id)
+    {
+        $data = array(
+            'id_penilaian' => $this->input->post('id'),
+            'info_penilaian' => $this->input->post('rating')
+        );
+        $this->db->where('id_penilaian', $data['id_penilaian']);
+        $this->db->update('penilaian_pelanggan', $data);
+        redirect('pelanggan/cstatusorder/detail_pesanan/' . $id);
     }
 }
 

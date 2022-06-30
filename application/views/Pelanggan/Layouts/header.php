@@ -84,7 +84,18 @@
                             </div>
 
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                                <?php
+                                if ($this->session->userdata('id') == '') {
+                                ?>
+                                    <a href="<?= base_url('pelanggan/clogin') ?>"><i class="fa fa-user"></i> Login</a>
+                                <?php
+                                } else {
+                                ?>
+                                    <a href="<?= base_url('pelanggan/clogin/logout') ?>"><i class="fa fa-user"></i> Logout</a>
+                                <?php
+                                }
+                                ?>
+
                             </div>
                         </div>
                     </div>

@@ -29,12 +29,22 @@ class cLogin_user extends CI_Controller
                     'id' => $id
                 );
                 $this->session->set_userdata($array);
-                redirect('Admin/cDashboard');
+                if ($data->level_user == '1') {
+                    redirect('Admin/cDashboard');
+                } else if ($data->level_user == '2') {
+                    redirect('Pemilik/cDashboard');
+                }
             } else {
                 $this->session->set_flashdata('error', 'Username dan Password Salah');
                 redirect('clogin_user');
             }
         }
+    }
+    public function logout()
+    {
+        $this->session->unset_userdata('id');
+        $this->session->set_flashdata('success', 'Anda Berhasil Logout!');
+        redirect('clogin_user');
     }
 }
 

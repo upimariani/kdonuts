@@ -41,7 +41,7 @@
                                                     <td><?= $value->nama_lengkap ?></td>
                                                     <td><?= $value->tanggal_order ?></td>
                                                     <td>Rp.<?= number_format($value->total_order) ?></td>
-                                                    <td><a href="<?= base_url('admin/ctransaksi/detail_pesanan/' . $id_transaksi) ?>" class="btn btn-warning"><i class="fa fa-info"></i></a></td>
+                                                    <td><a href="<?= base_url('admin/ctransaksi/detail_pesanan/' . $value->id_transaksi) ?>" class="btn btn-warning"><i class="fa fa-info"></i></a></td>
                                                 </tr>
                                             <?php
                                             }

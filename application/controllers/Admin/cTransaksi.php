@@ -60,6 +60,36 @@ class cTransaksi extends CI_Controller
         $this->load->view('Admin/pesanan_selesai', $data);
         $this->load->view('Admin/Layouts/footer');
     }
+    public function detail_pesanan($id)
+    {
+        $data = array(
+            'detail' => $this->mTransaksi->detail_pesanan($id)
+        );
+        $this->load->view('Admin/Layouts/head');
+        $this->load->view('Admin/Layouts/sidebar');
+        $this->load->view('Admin/detail_pesanan', $data);
+        $this->load->view('Admin/Layouts/footer');
+    }
+    public function konfirmasi_pembayaran($id)
+    {
+        $data = array(
+            'status_pengiriman' => '2'
+        );
+        $this->db->where('id_transaksi', $id);
+        $this->db->update('pengiriman', $data);
+        $this->session->set_flashdata('success', 'Pembayaran Pesanan Berhasil Dikonfirmasi!');
+        redirect('admin/ctransaksi/konfirmasi', 'refresh');
+    }
+    public function proses_kirim($id)
+    {
+        $data = array(
+            'status_pengiriman' => '3'
+        );
+        $this->db->where('id_transaksi', $id);
+        $this->db->update('pengiriman', $data);
+        $this->session->set_flashdata('success', 'Pembayaran Pesanan Berhasil Dikirim!');
+        redirect('admin/ctransaksi/konfirmasi', 'refresh');
+    }
 }
 
 /* End of file cTransaksi.php */

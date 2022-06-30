@@ -151,7 +151,7 @@
                                                 <div class="product__discount__item__text">
                                                     <span>Dried Fruit</span>
                                                     <h5><a href="#"><?= $value->nama_barang ?></a></h5>
-                                                    <div class="product__item__price">Rp. <?= number_format($value->harga_barang - ($value->diskon / 100 * $value->harga_barang)) ?> <span>rp. <?= number_format($value->harga_barang) ?></span></div>
+                                                    <div class="product__item__price">Rp. <?= number_format($value->harga_barang - ($value->diskon / 100 * $value->harga_barang)) ?> <span>Rp. <?= number_format($value->harga_barang) ?></span></div>
                                                 </div>
                                             </div>
                                         </form>

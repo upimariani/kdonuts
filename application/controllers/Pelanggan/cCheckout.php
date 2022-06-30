@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\map;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class cCheckout extends CI_Controller
@@ -13,8 +16,10 @@ class cCheckout extends CI_Controller
 
     public function index()
     {
+        $this->protect->protect();
         $data = array(
-            'ongkir' => $this->mOngkir->select()
+            'ongkir' => $this->mOngkir->select(),
+            'pelanggan' => $this->mCheckout->pelanggan()
         );
         $this->load->view('Pelanggan/Layouts/head');
         $this->load->view('Pelanggan/Layouts/header');
@@ -32,7 +37,8 @@ class cCheckout extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data = array(
-                'ongkir' => $this->mOngkir->select()
+                'ongkir' => $this->mOngkir->select(),
+                'pelanggan' => $this->mCheckout->pelanggan()
             );
             $this->load->view('Pelanggan/Layouts/head');
             $this->load->view('Pelanggan/Layouts/header');
@@ -42,17 +48,21 @@ class cCheckout extends CI_Controller
         } else {
             $data = array(
                 'id_transaksi' => $this->input->post('id_transaksi'),
-                'id_user' => '1',
+                'id_user' => $this->session->userdata('id'),
                 'total_order' => $this->input->post('total'),
                 'tanggal_order' => date('Y-m-d')
             );
             $this->mCheckout->transaksi($data);
 
+            $rt = $this->input->post('rt');
+            $rw = $this->input->post('rw');
+            $alamat = $this->input->post('alamat');
+
             //pengiriman
             $pengiriman = array(
                 'id_transaksi' => $this->input->post('id_transaksi'),
                 'id_ongkir' => $this->input->post('desa_kel'),
-                'alamat' => $this->input->post('alamat'),
+                'alamat' => 'RT. ' . $rt . ' RW. ' . $rw . ' Desa/Kel. ' . $alamat,
                 'status_pengiriman' => '0'
             );
             $this->mCheckout->pengiriman($pengiriman);

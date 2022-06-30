@@ -8,6 +8,15 @@
                 </div>
             </div>
         </div>
+        <?php
+        if ($this->session->userdata('success')) {
+        ?>
+            <div class="alert alert-success" role="alert">
+                <?= $this->session->userdata('success') ?>
+            </div>
+        <?php
+        }
+        ?>
         <!-- row -->
         <div class="row column1">
             <div class="col-md-12">
@@ -28,6 +37,7 @@
                                                 <th style="width: 30%">Atas Nama</th>
                                                 <th>Tanggal Order</th>
                                                 <th>Total Order</th>
+                                                <th>Konfirmasi Pembayaran</th>
                                                 <th>Detail</th>
                                             </tr>
                                         </thead>
@@ -41,7 +51,8 @@
                                                     <td><?= $value->nama_lengkap ?></td>
                                                     <td><?= $value->tanggal_order ?></td>
                                                     <td>Rp.<?= number_format($value->total_order) ?></td>
-                                                    <td><a href="<?= base_url('admin/ctransaksi/detail_pesanan/' . $id_transaksi) ?>" class="btn btn-warning"><i class="fa fa-info"></i></a></td>
+                                                    <td><a class="btn btn-success" href="<?= base_url('admin/ctransaksi/konfirmasi_pembayaran/' . $value->id_transaksi) ?>">Konfirmasi</a></td>
+                                                    <td><a href="<?= base_url('admin/ctransaksi/detail_pesanan/' . $value->id_transaksi) ?>" class="btn btn-warning"><i class="fa fa-info"></i></a></td>
                                                 </tr>
                                             <?php
                                             }

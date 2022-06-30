@@ -3,6 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class mCheckout extends CI_Model
 {
+    public function pelanggan()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('id_user', $this->session->userdata('id'));
+        return $this->db->get()->row();
+    }
     public function transaksi($data)
     {
         $this->db->insert('transaksi', $data);

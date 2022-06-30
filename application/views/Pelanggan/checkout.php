@@ -32,24 +32,24 @@
                     echo form_hidden('id_pemesanan' . $j++, $id_pemesanan);
                 }
                 ?>
-                <input type="text" name="total" class="price">
+                <input type="hidden" name="total" class="price">
                 <?php
                 $id_transaksi = date('Ymd') . strtoupper(random_string('alnum', 8));
                 ?>
-                <input type="text" name="id_transaksi" value="<?= $id_transaksi ?>">
+                <input type="hidden" name="id_transaksi" value="<?= $id_transaksi ?>">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>Atas Nama<span>*</span></p>
-                                    <input type="text">
+                                    <input value="<?= $pelanggan->nama_lengkap ?>" type="text" readonly>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>No Telepon<span>*</span></p>
-                                    <input type="text">
+                                    <input value="<?= $pelanggan->no_hp ?>" type="text" readonly>
                                 </div>
                             </div>
                         </div>

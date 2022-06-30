@@ -14,6 +14,7 @@ class cCart extends CI_Controller
     }
     public function add()
     {
+        $this->protect->protect();
         $data = array(
             'id' => $this->input->post('id'),
             'name' => $this->input->post('name'),

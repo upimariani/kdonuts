@@ -14,7 +14,9 @@ class cKatalog extends CI_Controller
     public function index()
     {
         $data = array(
-            'produk' => $this->mKatalog->produk()
+            'produk' => $this->mKatalog->produk(),
+            'terlaris' => $this->mKatalog->produk_terlaris(),
+            'rating' => $this->mKatalog->produk_rating()
         );
         $this->load->view('Pelanggan/Layouts/head');
         $this->load->view('Pelanggan/Layouts/header');

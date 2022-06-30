@@ -46,7 +46,7 @@
                                 <li><a href="<?= base_url('Admin/cTransaksi/selesai') ?>">> <span>Pesanan Selesai</span></a></li>
                             </ul>
                         </li>
-                        <li><a href="tables.html"><i class="fa fa-sign-out"></i> <span>LogOut</span></a></li>
+                        <li><a href="<?= base_url('clogin_user/logout') ?>"><i class="fa fa-sign-out"></i> <span>LogOut</span></a></li>
 
                     </ul>
                 </div>
