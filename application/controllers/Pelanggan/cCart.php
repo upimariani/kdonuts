@@ -3,12 +3,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class cCart extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('mKatalog');
+    }
 
     public function index()
     {
+        $data = array(
+            'produk' => $this->mKatalog->produk()
+        );
         $this->load->view('Pelanggan/Layouts/head');
         $this->load->view('Pelanggan/Layouts/header');
-        $this->load->view('Pelanggan/Layouts/section');
+        $this->load->view('Pelanggan/Layouts/section', $data);
         $this->load->view('Pelanggan/cart');
         $this->load->view('Pelanggan/Layouts/footer');
     }
@@ -24,7 +32,7 @@ class cCart extends CI_Controller
             'stok' => $this->input->post('stok')
         );
         $this->cart->insert($data);
-        redirect('pelanggan/ckatalog/shop_list');
+        redirect('pelanggan/ckatalog');
     }
     public function update_cart()
     {

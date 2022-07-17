@@ -33,6 +33,16 @@ class cKatalog extends CI_Controller
         $this->load->view('Pelanggan/shop_list', $data);
         $this->load->view('Pelanggan/Layouts/footer');
     }
+    public function detail_produk($id)
+    {
+        $data = array(
+            'detail' => $this->mKatalog->detail_produk($id)
+        );
+        $this->load->view('Pelanggan/Layouts/head');
+        $this->load->view('Pelanggan/Layouts/header');
+        $this->load->view('Pelanggan/detail_produk', $data);
+        $this->load->view('Pelanggan/Layouts/footer');
+    }
 }
 
 /* End of file cKatalog.php */

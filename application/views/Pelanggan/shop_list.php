@@ -35,89 +35,6 @@
 
                         </ul>
                     </div>
-                    <div class="sidebar__item">
-                        <h4>Price</h4>
-                        <div class="price-range-wrap">
-                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content" data-min="10" data-max="540">
-                                <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                            </div>
-                            <div class="range-slider">
-                                <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sidebar__item sidebar__item__color--option">
-                        <h4>Colors</h4>
-                        <div class="sidebar__item__color sidebar__item__color--white">
-                            <label for="white">
-                                White
-                                <input type="radio" id="white">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__color sidebar__item__color--gray">
-                            <label for="gray">
-                                Gray
-                                <input type="radio" id="gray">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__color sidebar__item__color--red">
-                            <label for="red">
-                                Red
-                                <input type="radio" id="red">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__color sidebar__item__color--black">
-                            <label for="black">
-                                Black
-                                <input type="radio" id="black">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__color sidebar__item__color--blue">
-                            <label for="blue">
-                                Blue
-                                <input type="radio" id="blue">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__color sidebar__item__color--green">
-                            <label for="green">
-                                Green
-                                <input type="radio" id="green">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="sidebar__item">
-                        <h4>Popular Size</h4>
-                        <div class="sidebar__item__size">
-                            <label for="large">
-                                Large
-                                <input type="radio" id="large">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__size">
-                            <label for="medium">
-                                Medium
-                                <input type="radio" id="medium">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__size">
-                            <label for="small">
-                                Small
-                                <input type="radio" id="small">
-                            </label>
-                        </div>
-                        <div class="sidebar__item__size">
-                            <label for="tiny">
-                                Tiny
-                                <input type="radio" id="tiny">
-                            </label>
-                        </div>
-                    </div>
-
                 </div>
             </div>
             <div class="col-lg-9 col-md-7">
@@ -142,16 +59,13 @@
                                             <div class="product__discount__item">
                                                 <div class="product__discount__item__pic set-bg" data-setbg="<?= base_url('asset/foto-produk/' . $value->gambar) ?>">
                                                     <div class="product__discount__percent">-<?= $value->diskon ?>%</div>
-                                                    <ul class="product__item__pic__hover">
-                                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                        <li><button type="submit"><i class="fa fa-shopping-cart"></i></button></li>
-                                                    </ul>
+
                                                 </div>
                                                 <div class="product__discount__item__text">
                                                     <span>Dried Fruit</span>
                                                     <h5><a href="#"><?= $value->nama_barang ?></a></h5>
                                                     <div class="product__item__price">Rp. <?= number_format($value->harga_barang - ($value->diskon / 100 * $value->harga_barang)) ?> <span>Rp. <?= number_format($value->harga_barang) ?></span></div>
+                                                    <button type="submit" class="site-btn"><i class="fa fa-shopping-cart"></i></button>
                                                 </div>
                                             </div>
                                         </form>
@@ -204,15 +118,12 @@
                                 <input type="hidden" name="stok" value="<?= $value->qty_barang ?>">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="<?= base_url('asset/foto-produk/' . $value->gambar) ?>">
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><button type="submit"><i class="fa fa-shopping-cart"></i></button></li>
-                                        </ul>
+
                                     </div>
                                     <div class="product__item__text">
                                         <h6><a href="#"><?= $value->nama_barang ?></a></h6>
                                         <h5>Rp. <?= number_format($value->harga_barang - ($value->diskon / 100 * $value->harga_barang)) ?></h5>
+                                        <button type="submit" class="site-btn"><i class="fa fa-shopping-cart"></i></button>
                                     </div>
                                 </div>
                             </form>

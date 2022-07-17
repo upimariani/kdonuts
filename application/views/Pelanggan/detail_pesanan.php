@@ -79,6 +79,7 @@
                                                 <input type="hidden" name="id" value="<?= $value->id_penilaian ?>">
                                                 <input class="rating-input" type="text" name="rating" title="" />
                                             </li>
+                                            <textarea class="form-control" name="review" rows="5" placeholder="Tuliskan review anda*)" required></textarea>
                                             <button class="site-btn" type="submit">Nilai</button>
                                         </form>
                                     <?php

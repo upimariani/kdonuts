@@ -26,7 +26,8 @@ class cLogin extends CI_Controller
             if ($data) {
 
                 $array = array(
-                    'id' => $data->id_user
+                    'id' => $data->id_user,
+                    'nama' => $data->nama_lengkap
                 );
                 $this->session->set_userdata($array);
                 redirect('pelanggan/ckatalog', 'refresh');
@@ -38,8 +39,8 @@ class cLogin extends CI_Controller
     }
     public function registrasi()
     {
-        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
-        $this->form_validation->set_rules('no_hp', 'No Telepon', 'required');
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|alpha');
+        $this->form_validation->set_rules('no_hp', 'No Telepon', 'required|min_length[11]|max_length[13]');
         $this->form_validation->set_rules('email', 'Email', 'required');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
         $this->form_validation->set_rules('kode_pos', 'Kode Pos', 'required');

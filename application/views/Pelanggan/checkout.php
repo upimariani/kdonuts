@@ -74,20 +74,13 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="checkout__input">
-                                    <p>Alamat<span>*</span></p>
-                                    <input type="text" name="alamat" placeholder="Masukkan Alamat Lengkap">
-                                    <?= form_error('alamat', '<small class="text-danger">', '</small>') ?>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="checkout__input">
                                     <p>Desa/Kelurahan<span>*</span></p>
-                                    <select name="desa_kel" id="ongkir" class="form-control">
-                                        <option value="">---Pilih Desa/Kelurahan---</option>
+                                    <select name="kecamatan" id="kecamatan" class="form-control">
+                                        <option value="">---Pilih Kecamatan---</option>
                                         <?php
-                                        foreach ($ongkir as $key => $value) {
+                                        foreach ($kecamatan as $key => $value) {
                                         ?>
-                                            <option data-ongkir="Rp. <?= number_format($value->ongkir) ?>" data-price="<?= $value->ongkir + $this->cart->total() ?>" data-total="Rp. <?= number_format($value->ongkir + $this->cart->total()) ?>" value="<?= $value->id_ongkir ?>"><?= $value->desa_kel ?></option>
+                                            <option value="<?= $value->id_kecamatan ?>"><?= $value->nama_kecamatan ?></option>
                                         <?php
                                         }
                                         ?>
@@ -95,7 +88,27 @@
                                     <?= form_error('desa_kel', '<small class="text-danger">', '</small>') ?>
                                 </div>
                             </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Desa/Kelurahan<span>*</span></p>
+                                    <select name="desa_kel" id="ongkir" class="form-control">
+
+
+                                    </select>
+                                    <?= form_error('desa_kel', '<small class="text-danger">', '</small>') ?>
+                                </div>
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-12 mt-3">
+                                <div class="checkout__input">
+                                    <p>Alamat<span>*</span></p>
+                                    <input type="text" name="alamat" placeholder="Masukkan Alamat Lengkap">
+                                    <?= form_error('alamat', '<small class="text-danger">', '</small>') ?>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="checkout__order">
@@ -123,4 +136,65 @@
         </div>
     </div>
 </section>
+<!-- Footer Section Begin -->
+<footer class="footer spad">
+
+</footer>
+<!-- Footer Section End -->
+
+<!-- Js Plugins -->
+<script src="<?= base_url('asset/ogani-master/') ?>js/jquery-3.3.1.min.js"></script>
+<script src="<?= base_url('asset/ogani-master/') ?>js/bootstrap.min.js"></script>
+<script src="<?= base_url('asset/ogani-master/') ?>js/main.js"></script>
+
+
 <!-- Checkout Section End -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#kecamatan').change(function() {
+            var id = $(this).val();
+            $.ajax({
+                url: "<?php echo site_url('pelanggan/cCheckout/get_desa'); ?>",
+                method: "POST",
+                data: {
+                    id: id
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+
+                    var html = '';
+                    var i;
+                    html = '<option value="">---Pilih Desa/Kelurahan---</option>';
+                    for (i = 0; i < data.length; i++) {
+                        var total_bayar = parseInt(data[i].ongkir) + parseInt(<?= $this->cart->total() ?>);
+                        var reverse2 = total_bayar.toString().split('').reverse().join(''),
+                            ribuan_total = reverse2.match(/\d{1,3}/g);
+                        ribuan_total = ribuan_total.join(',').split('').reverse().join('');
+                        html += '<option data-total=' + ribuan_total + ' data-price=' + total_bayar + ' data-ongkir=' + data[i].ongkir + ' value=' + data[i].id_ongkir + '>' + data[i].desa_kel + '</option>';
+                    }
+                    $('#ongkir').html(html);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<script>
+    console.log = function() {}
+    $("#ongkir").on('change', function() {
+        $(".ongkir").html($(this).find(':selected').attr('data-ongkir'));
+        $(".ongkir").val($(this).find(':selected').attr('data-ongkir'));
+
+        $(".total").html($(this).find(':selected').attr('data-total'));
+        $(".total").val($(this).find(':selected').attr('data-total'));
+
+        $(".price").html($(this).find(':selected').attr('data-price'));
+        $(".price").val($(this).find(':selected').attr('data-price'));
+
+    });
+</script>
+
+</body>
+
+</html>

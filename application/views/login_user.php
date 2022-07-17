@@ -44,7 +44,6 @@
                 <div class="login_section">
                     <div class="logo_login">
                         <div class="center">
-                            <img width="210" src="<?= base_url('asset/pluto-1.0.0/') ?>images/logo/logo.png" alt="#" />
                         </div>
                     </div>
                     <div class="login_form">

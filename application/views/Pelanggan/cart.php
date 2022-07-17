@@ -49,11 +49,10 @@
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
-                                            <input type="number" name="<?= $i . '[qty]' ?>" min="1" max="<?= $value['stok'] ?>" value="<?= $value['qty'] ?>">
-
+                                            <input class="form-control" type="number" name="<?= $i . '[qty]' ?>" min="1" max="<?= $value['stok'] ?>" value="<?= $value['qty'] ?>">
                                         </div>
                                     </td>
-                                    <td class="shoping__cart__total">
+                                    <td class="shoping__cart__total" id="total<?= $i ?>">
                                         Rp. <?= number_format($value['qty'] * $value['price'])  ?>
                                     </td>
                                     <td class="shoping__cart__item__close">

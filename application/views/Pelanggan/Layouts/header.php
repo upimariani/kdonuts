@@ -56,7 +56,7 @@
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                <li><i class="fa fa-envelope"></i> kdonuts@gmail.com</li>
             </ul>
         </div>
     </div>
@@ -70,17 +70,21 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                                <li><i class="fa fa-envelope"></i> kdonuts@gmail.com</li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                             <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                                <?php
+                                if ($this->session->userdata('id') != '') {
+                                ?>
+                                    <p>Selamat datang, <strong><?= $this->session->userdata('nama') ?></strong></p>
+                                <?php
+                                }
+                                ?>
+
                             </div>
 
                             <div class="header__top__right__auth">
@@ -95,6 +99,8 @@
                                 <?php
                                 }
                                 ?>
+
+
 
                             </div>
                         </div>
@@ -113,9 +119,10 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="<?= base_url('Pelanggan/cKatalog') ?>">Home</a></li>
-                            <li><a href="<?= base_url('Pelanggan/cKatalog/shop_list') ?>">Shop</a></li>
+                            <!-- <li><a href="<?= base_url('Pelanggan/cKatalog/shop_list') ?>">Shop</a></li> -->
 
                             <li><a href="<?= base_url('Pelanggan/cStatusOrder') ?>">Pesanan Saya</a></li>
+
                         </ul>
                     </nav>
                 </div>
@@ -128,6 +135,7 @@
                         }
                         ?>
                         <ul>
+
                             <li><a href="<?= base_url('Pelanggan/cCart') ?>"><i class="fa fa-shopping-bag"></i> <span><?= $qty ?></span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>Rp. <?= number_format($this->cart->total()) ?></span></div>

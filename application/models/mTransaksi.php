@@ -24,8 +24,8 @@ class mTransaksi extends CI_Model
     }
     public function detail_pesanan($id)
     {
-        $data['transaksi'] = $this->db->query("SELECT * FROM `transaksi` JOIN user ON transaksi.id_user=user.id_user JOIN pengiriman ON transaksi.id_transaksi=pengiriman.id_transaksi JOIN ongkir ON ongkir.id_ongkir=pengiriman.id_ongkir WHERE transaksi.id_transaksi='" . $id . "';")->row();
-        $data['pesanan'] = $this->db->query("SELECT * FROM pemesanan JOIN transaksi ON pemesanan.id_transaksi=transaksi.id_transaksi JOIN produk ON produk.id_barang=pemesanan.id_barang JOIN diskon ON produk.id_barang=diskon.id_barang JOIN penilaian_pelanggan ON pemesanan.id_pemesanan = penilaian_pelanggan.id_pemesanan WHERE transaksi.id_transaksi='" . $id . "';")->result();
+        $data['transaksi'] = $this->db->query("SELECT * FROM transaksi JOIN user ON transaksi.id_user=user.id_user JOIN pengiriman ON transaksi.id_transaksi=pengiriman.id_transaksi JOIN ongkir ON ongkir.id_ongkir=pengiriman.id_ongkir WHERE transaksi.id_transaksi='" . $id . "'")->row();
+        $data['pesanan'] = $this->db->query("SELECT * FROM pemesanan JOIN transaksi ON pemesanan.id_transaksi=transaksi.id_transaksi JOIN produk ON produk.id_barang=pemesanan.id_barang JOIN diskon ON produk.id_barang=diskon.id_barang JOIN penilaian_pelanggan ON pemesanan.id_pemesanan = penilaian_pelanggan.id_pemesanan WHERE transaksi.id_transaksi='" . $id . "'")->result();
         return $data;
     }
     public function bayar($id, $data)

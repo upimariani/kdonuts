@@ -10,6 +10,7 @@ class mCheckout extends CI_Model
         $this->db->where('id_user', $this->session->userdata('id'));
         return $this->db->get()->row();
     }
+
     public function transaksi($data)
     {
         $this->db->insert('transaksi', $data);

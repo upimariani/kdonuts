@@ -8,6 +8,7 @@ class cStatusOrder extends CI_Controller
     {
         parent::__construct();
         $this->load->model('mTransaksi');
+        $this->load->model('mKatalog');
     }
 
 
@@ -15,22 +16,24 @@ class cStatusOrder extends CI_Controller
     {
         $this->protect->protect();
         $data = array(
+            'produk' => $this->mKatalog->produk(),
             'transaksi' => $this->mTransaksi->status_order()
         );
         $this->load->view('Pelanggan/Layouts/head');
         $this->load->view('Pelanggan/Layouts/header');
-        $this->load->view('Pelanggan/Layouts/section');
+        $this->load->view('Pelanggan/Layouts/section', $data);
         $this->load->view('Pelanggan/status_order', $data);
         $this->load->view('Pelanggan/Layouts/footer');
     }
     public function detail_pesanan($id)
     {
         $data = array(
+            'produk' => $this->mKatalog->produk(),
             'detail' => $this->mTransaksi->detail_pesanan($id)
         );
         $this->load->view('Pelanggan/Layouts/head');
         $this->load->view('Pelanggan/Layouts/header');
-        $this->load->view('Pelanggan/Layouts/section');
+        $this->load->view('Pelanggan/Layouts/section', $data);
         $this->load->view('Pelanggan/detail_pesanan', $data);
         $this->load->view('Pelanggan/Layouts/footer');
     }
@@ -82,7 +85,8 @@ class cStatusOrder extends CI_Controller
     {
         $data = array(
             'id_penilaian' => $this->input->post('id'),
-            'info_penilaian' => $this->input->post('rating')
+            'info_penilaian' => $this->input->post('rating'),
+            'review' => $this->input->post('review')
         );
         $this->db->where('id_penilaian', $data['id_penilaian']);
         $this->db->update('penilaian_pelanggan', $data);

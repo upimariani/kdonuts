@@ -12,20 +12,28 @@ class cCheckout extends CI_Controller
         parent::__construct();
         $this->load->model('mOngkir');
         $this->load->model('mCheckout');
+        $this->load->model('mKatalog');
     }
 
     public function index()
     {
         $this->protect->protect();
         $data = array(
+            'produk' => $this->mKatalog->produk(),
             'ongkir' => $this->mOngkir->select(),
+            'kecamatan' => $this->mOngkir->select_kecamatan(),
             'pelanggan' => $this->mCheckout->pelanggan()
         );
         $this->load->view('Pelanggan/Layouts/head');
         $this->load->view('Pelanggan/Layouts/header');
-        $this->load->view('Pelanggan/Layouts/section');
+        $this->load->view('Pelanggan/Layouts/section', $data);
         $this->load->view('Pelanggan/checkout', $data);
-        $this->load->view('Pelanggan/Layouts/footer');
+    }
+    public function get_desa()
+    {
+        $id = $this->input->post('id', TRUE);
+        $data = $this->mOngkir->get_desa($id);
+        echo json_encode($data);
     }
     public function checkout()
     {
@@ -38,11 +46,12 @@ class cCheckout extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data = array(
                 'ongkir' => $this->mOngkir->select(),
+                'produk' => $this->mKatalog->produk(),
                 'pelanggan' => $this->mCheckout->pelanggan()
             );
             $this->load->view('Pelanggan/Layouts/head');
             $this->load->view('Pelanggan/Layouts/header');
-            $this->load->view('Pelanggan/Layouts/section');
+            $this->load->view('Pelanggan/Layouts/section', $data);
             $this->load->view('Pelanggan/checkout', $data);
             $this->load->view('Pelanggan/Layouts/footer');
         } else {
@@ -103,7 +112,7 @@ class cCheckout extends CI_Controller
                 $this->mCheckout->stok($id, $data);
             }
             $this->cart->destroy();
-            redirect('pelanggan/ckatalog');
+            redirect('pelanggan/cStatusOrder');
         }
     }
 }
