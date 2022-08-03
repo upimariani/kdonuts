@@ -17,7 +17,7 @@ class mKatalog extends CI_Model
     }
     public function produk_rating()
     {
-        return $this->db->query("SELECT SUM(info_penilaian) / COUNT(info_penilaian) as jml , pemesanan.id_pemesanan, produk.id_barang, gambar, nama_barang, harga_barang, diskon, qty_barang FROM penilaian_pelanggan JOIN pemesanan ON pemesanan.id_pemesanan=penilaian_pelanggan.id_pemesanan JOIN produk ON produk.id_barang=pemesanan.id_barang JOIN diskon ON produk.id_barang=diskon.id_barang WHERE info_penilaian !='0'  GROUP BY pemesanan.id_barang ORDER BY jml DESC limit 5")->result();
+        return $this->db->query("SELECT round(SUM(info_penilaian) / COUNT(info_penilaian)) as jml , pemesanan.id_pemesanan, produk.id_barang, gambar, nama_barang, harga_barang, diskon, qty_barang FROM penilaian_pelanggan JOIN pemesanan ON pemesanan.id_pemesanan=penilaian_pelanggan.id_pemesanan JOIN produk ON produk.id_barang=pemesanan.id_barang JOIN diskon ON produk.id_barang=diskon.id_barang WHERE info_penilaian !='0'  GROUP BY pemesanan.id_barang ORDER BY jml DESC limit 5")->result();
     }
     public function detail_produk($id)
     {

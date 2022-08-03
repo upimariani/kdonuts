@@ -70,6 +70,17 @@ class cOngkir extends CI_Controller
         $this->session->set_flashdata('success', 'Data Kecamatan Berhasil Diperbaharui!');
         redirect('Admin/congkir');
     }
+    public function delete_kec($id)
+    {
+        $this->db->where('id_kecamatan', $id);
+        $this->db->delete('kecamatan');
+
+        $this->db->where('id_kecamatan', $id);
+        $this->db->delete('ongkir');
+
+        $this->session->set_flashdata('success', 'Data Kecamatan Berhasil Dihapus!');
+        redirect('Admin/congkir');
+    }
 }
 
 /* End of file cOngkir.php */

@@ -47,13 +47,13 @@ class cCheckout extends CI_Controller
             $data = array(
                 'ongkir' => $this->mOngkir->select(),
                 'produk' => $this->mKatalog->produk(),
+                'kecamatan' => $this->mOngkir->select_kecamatan(),
                 'pelanggan' => $this->mCheckout->pelanggan()
             );
             $this->load->view('Pelanggan/Layouts/head');
             $this->load->view('Pelanggan/Layouts/header');
             $this->load->view('Pelanggan/Layouts/section', $data);
             $this->load->view('Pelanggan/checkout', $data);
-            $this->load->view('Pelanggan/Layouts/footer');
         } else {
             $data = array(
                 'id_transaksi' => $this->input->post('id_transaksi'),

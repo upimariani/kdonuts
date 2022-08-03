@@ -49,8 +49,12 @@
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
-                                            <input class="form-control" type="number" name="<?= $i . '[qty]' ?>" min="1" max="<?= $value['stok'] ?>" value="<?= $value['qty'] ?>">
+                                            <input type="number" value="<?= $value['qty'] ?>">
+                                            <input type="hidden" name="<?= $i . '[qty]' ?>" min="1" max="<?= $value['stok'] ?>" value="<?= $value['qty'] + 1 ?>">
+                                            <button type="submit" class="btn btn-success">
+                                                +</button>
                                         </div>
+
                                     </td>
                                     <td class="shoping__cart__total" id="total<?= $i ?>">
                                         Rp. <?= number_format($value['qty'] * $value['price'])  ?>
@@ -72,9 +76,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="shoping__cart__btns">
-                    <a href="<?= base_url('pelanggan/ckatalog/shop_list') ?>" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                    <button type="submit" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                        Update Cart</button>
+                    <a href="<?= base_url('pelanggan/ckatalog') ?>" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+
                 </div>
             </div>
             <div class="col-lg-6">
@@ -85,7 +88,7 @@
                     <ul>
                         <li>Total <span>Rp. <?= number_format($this->cart->total()) ?></span></li>
                     </ul>
-                    <a href="<?= base_url('Pelanggan/cCheckout') ?>" class="primary-btn">PROCEED TO CHECKOUT</a>
+                    <a href="<?= base_url('Pelanggan/cCheckout/' . $this->session->userdata('id')) ?>" class="primary-btn">PROCEED TO CHECKOUT</a>
                 </div>
             </div>
         </div>

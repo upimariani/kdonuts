@@ -8,7 +8,7 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="img/logo.png" alt=""></a>
+            <a href="#"><img src="<?= base_url('asset/logo2.jpg') ?>" alt=""></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -112,7 +112,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a href="./index.html"><img src="<?= base_url('asset/logo2.jpg') ?>" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">

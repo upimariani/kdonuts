@@ -29,20 +29,22 @@
                             <div class="w-100">
                                 <h3 class="mb-4">Sign Up</h3>
                             </div>
-                            <div class="w-100">
-                                <p class="social-media d-flex justify-content-end">
-                                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-                                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-                                </p>
-                            </div>
+
                         </div>
                         <form action="<?= base_url('pelanggan/clogin/registrasi') ?>" method="POST" class="login-form">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Nama Lengkap</label>
-                                        <input type="text" name="nama" class="form-control">
-                                        <?= form_error('nama', ' <small class="text-danger">', '</small>') ?>
+                                        <label>Nama Depan</label>
+                                        <input type="text" name="nama_depan" class="form-control">
+                                        <?= form_error('nama_depan', ' <small class="text-danger">', '</small>') ?>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Nama Belakang</label>
+                                        <input type="text" name="nama_belakang" class="form-control">
+                                        <?= form_error('nama_belakang', ' <small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -52,11 +54,51 @@
                                         <?= form_error('no_hp', ' <small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>Email</label>
                                         <input type="email" name="email" class="form-control rounded-left">
                                         <?= form_error('email', ' <small class="text-danger">', '</small>') ?>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Kecamatan</label>
+                                        <select class="form-control" id="kecamatan" name="kecamatan">
+                                            <option value="">---Pilih Kecamatan---</option>
+                                            <?php
+                                            foreach ($kecamatan as $key => $value) {
+                                            ?>
+                                                <option value="<?= $value->id_kecamatan ?>"><?= $value->nama_kecamatan ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <?= form_error('kecamatan', ' <small class="text-danger">', '</small>') ?>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Desa/Kelurahan</label>
+                                        <select name="desa_kel" id="ongkir" class="form-control">
+
+
+                                        </select>
+                                        <?= form_error('desa_kel', '<small class="text-danger">', '</small>') ?>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>RT</label>
+                                        <input type="number" name="rt" class="form-control rounded-left">
+                                        <?= form_error('rt', ' <small class="text-danger">', '</small>') ?>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>RW</label>
+                                        <input type="number" name="rw" class="form-control rounded-left">
+                                        <?= form_error('rw', ' <small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
                                 <div class="col-lg-8">
@@ -110,7 +152,33 @@
     <script src="<?= base_url('asset/login/') ?>js/popper.js"></script>
     <script src="<?= base_url('asset/login/') ?>js/bootstrap.min.js"></script>
     <script src="<?= base_url('asset/login/') ?>js/main.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#kecamatan').change(function() {
+                var id = $(this).val();
+                $.ajax({
+                    url: "<?php echo site_url('pelanggan/cCheckout/get_desa'); ?>",
+                    method: "POST",
+                    data: {
+                        id: id
+                    },
+                    async: true,
+                    dataType: 'json',
+                    success: function(data) {
 
+                        var html = '';
+                        var i;
+                        html = '<option value="">---Pilih Desa/Kelurahan---</option>';
+                        for (i = 0; i < data.length; i++) {
+                            html += '<option value=' + data[i].id_ongkir + '>' + data[i].desa_kel + '</option>';
+                        }
+                        $('#ongkir').html(html);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
 </body>
 
 </html>

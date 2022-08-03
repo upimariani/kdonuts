@@ -24,7 +24,7 @@
                     <h4>General</h4>
                     <ul class="list-unstyled components">
                         <li class="active">
-                            <a href="#dashboard"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                            <a href="<?= base_url('Admin/cDashboard') ?>"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
 
                         </li>
                         <li>
