@@ -17,13 +17,11 @@
 <!-- Breadcrumb Section End -->
 
 <!-- Shoping Cart Section Begin -->
-<?php echo form_open('pelanggan/cCart/update_cart'); ?>
 <section class="shoping-cart spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="shoping__cart__table">
-
                     <table>
                         <thead>
                             <tr>
@@ -39,6 +37,8 @@
                             $i = 1;
                             foreach ($this->cart->contents() as $key => $value) {
                             ?>
+                                <?php echo form_hidden($i . '[rowid]', $value['rowid']); ?>
+
                                 <tr>
                                     <td class="shoping__cart__item">
                                         <img src="img/cart/cart-1.jpg" alt="">
@@ -49,11 +49,19 @@
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
-                                            <input type="number" value="<?= $value['qty'] ?>">
-                                            <input type="hidden" name="<?= $i . '[qty]' ?>" min="1" max="<?= $value['stok'] ?>" value="<?= $value['qty'] + 1 ?>">
-                                            <button type="submit" class="btn btn-success">
-                                                +</button>
+                                            <?php
+                                            $qty_min = $value['qty'] - 1;
+                                            ?>
+                                            <a href="<?= base_url('pelanggan/ccart/update_cart/' . $value['rowid'] . '/' . $qty_min) ?>" class="btn btn-success">
+                                                -</a>
+                                            <?php $qty = $value['qty'] + 1;
+
+                                            echo form_input(array('value' => $value['qty'], 'size' => '5')); ?>
+                                            <a href="<?= base_url('pelanggan/ccart/update_cart/' . $value['rowid'] . '/' . $qty) ?>" class="btn btn-success">
+                                                +</a>
                                         </div>
+                                    </td>
+
 
                                     </td>
                                     <td class="shoping__cart__total" id="total<?= $i ?>">
@@ -63,10 +71,8 @@
                                         <a href="<?= base_url('Pelanggan/cCart/delete/' . $value['rowid']) ?>"><span class="icon_close"></span></a>
                                     </td>
                                 </tr>
-                            <?php
-                                $i++;
-                            }
-                            ?>
+                            <?php $i++;
+                            } ?>
                         </tbody>
                     </table>
 
@@ -88,7 +94,7 @@
                     <ul>
                         <li>Total <span>Rp. <?= number_format($this->cart->total()) ?></span></li>
                     </ul>
-                    <a href="<?= base_url('Pelanggan/cCheckout/' . $this->session->userdata('id')) ?>" class="primary-btn">PROCEED TO CHECKOUT</a>
+                    <a href="<?= base_url('Pelanggan/cCheckout') ?>" class="primary-btn">PROCEED TO CHECKOUT</a>
                 </div>
             </div>
         </div>

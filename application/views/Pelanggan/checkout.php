@@ -32,7 +32,7 @@
 					echo form_hidden('id_pemesanan' . $j++, $id_pemesanan);
 				}
 				?>
-				<input type="hidden" name="total" class="price">
+				<input type="hidden" name="total" value="<?= $pelanggan->ongkir + $this->cart->total() ?>">
 				<?php
 				$id_transaksi = date('Ymd') . strtoupper(random_string('alnum', 8));
 				?>
@@ -58,16 +58,15 @@
 							<div class="col-lg-6">
 								<div class="checkout__input">
 									<p>RT<span>*</span></p>
-									<input type="text" name="rt" value="<?= $pelanggan->rt ?>" placeholder="Masukkan RT">
-									<?= form_error('rt', '<small class="text-danger">', '</small>') ?>
+									<input type="text" name="rt" value="<?= $pelanggan->rt ?>" placeholder="Masukkan RT" readonly>
 
 								</div>
 							</div>
 							<div class="col-lg-6">
 								<div class="checkout__input">
 									<p>RW<span>*</span></p>
-									<input type="text" name="rw" value="<?= $pelanggan->rw ?>" placeholder="Masukkan RW" class="checkout__input__add">
-									<?= form_error('rw', '<small class="text-danger">', '</small>') ?>
+									<input type="text" name="rw" value="<?= $pelanggan->rw ?>" placeholder="Masukkan RW" class="checkout__input__add" readonly>
+
 								</div>
 							</div>
 						</div>
@@ -75,27 +74,16 @@
 							<div class="col-lg-6">
 								<div class="checkout__input">
 									<p>Kecamatan<span>*</span></p>
-									<select name="kecamatan" id="kecamatan" class="form-control">
-										<option value="">---Pilih Kecamatan---</option>
-										<?php
-										foreach ($kecamatan as $key => $value) {
-										?>
-											<option value="<?= $value->id_kecamatan ?>"><?= $value->nama_kecamatan ?></option>
-										<?php
-										}
-										?>
-									</select>
-									<?= form_error('desa_kel', '<small class="text-danger">', '</small>') ?>
+									<input type="text" name="kecamatan" value="<?= $pelanggan->nama_kecamatan ?>" placeholder="Masukkan RW" class="checkout__input__add" readonly>
+
 								</div>
 							</div>
 							<div class="col-lg-6">
 								<div class="checkout__input">
 									<p>Desa/Kelurahan<span>*</span></p>
-									<select name="desa_kel" id="ongkir" class="form-control">
+									<input type="text" value="<?= $pelanggan->desa_kel ?>" placeholder="Masukkan RW" class="checkout__input__add" readonly>
+									<input type="hidden" name="desa_kel" value="<?= $pelanggan->id_ongkir ?>" placeholder="Masukkan RW" class="checkout__input__add" readonly>
 
-
-									</select>
-									<?= form_error('desa_kel', '<small class="text-danger">', '</small>') ?>
 								</div>
 							</div>
 						</div>
@@ -103,12 +91,12 @@
 							<div class="col-lg-12 mt-3">
 								<div class="checkout__input">
 									<p>Alamat<span>*</span></p>
-									<input type="text" name="alamat" placeholder="Masukkan Alamat Lengkap">
-									<?= form_error('alamat', '<small class="text-danger">', '</small>') ?>
+									<input type="text" value="<?= $pelanggan->alamat ?>" name="alamat" placeholder="Masukkan Alamat Lengkap" readonly>
+
 								</div>
 							</div>
 						</div>
-
+						<a href="<?= base_url('pelanggan/cCheckout/alamat_lain') ?>" class="site-btn mb-4">ALAMAT LAIN</a>
 					</div>
 					<div class="col-lg-4 col-md-6">
 						<div class="checkout__order">
@@ -125,10 +113,11 @@
 
 							</ul>
 							<div class="checkout__order__subtotal">Subtotal <span>Rp. <?= number_format($this->cart->total())  ?></span></div>
-							<div class="checkout__order__subtotal">Shipping <span class="ongkir"></span></div>
-							<div class="checkout__order__total">Total <span class="total"></span></div>
+							<div class="checkout__order__subtotal">Shipping <span>Rp. <?= number_format($pelanggan->ongkir) ?></span></div>
+							<div class="checkout__order__total">Total <span>Rp. <?= number_format($pelanggan->ongkir + $this->cart->total()) ?></span></div>
 
 							<button type="submit" class="site-btn mb-4">CHECKOUT</button>
+
 						</div>
 					</div>
 				</div>
@@ -176,6 +165,7 @@
 						var ong = ongkir.toString().split('').reverse().join(''),
 							ongk = ong.match(/\d{1,3}/g);
 						ongk = ongk.join(',').split('').reverse().join('');
+						var id_ongkir = data[i].id_ongkir;
 						html += '<option data-total=' + ribuan_total + ' data-price=' + total_bayar + ' data-ongkir=' + ongk + ' value=' + data[i].id_ongkir + '>' + data[i].desa_kel + '</option>';
 					}
 					$('#ongkir').html(html);

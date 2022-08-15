@@ -54,11 +54,6 @@
             <a href="#"><i class="fa fa-linkedin"></i></a>
             <a href="#"><i class="fa fa-pinterest-p"></i></a>
         </div>
-        <div class="humberger__menu__contact">
-            <ul>
-                <li><i class="fa fa-envelope"></i> kdonuts@gmail.com</li>
-            </ul>
-        </div>
     </div>
     <!-- Humberger End -->
 
@@ -68,11 +63,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
-                        <div class="header__top__left">
-                            <ul>
-                                <li><i class="fa fa-envelope"></i> kdonuts@gmail.com</li>
-                            </ul>
-                        </div>
+
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
@@ -122,6 +113,7 @@
                             <!-- <li><a href="<?= base_url('Pelanggan/cKatalog/shop_list') ?>">Shop</a></li> -->
 
                             <li><a href="<?= base_url('Pelanggan/cStatusOrder') ?>">Pesanan Saya</a></li>
+                            <li><a href="<?= base_url('Pelanggan/cAbout') ?>">About</a></li>
 
                         </ul>
                     </nav>

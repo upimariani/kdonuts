@@ -37,12 +37,12 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#transaksi" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-shopping-cart red_color"></i> <span>Transaksi</span></a>
+                            <a href="#transaksi" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-shopping-cart red_color"></i> <span>Transaksi</span><span class="badge badge-success"><?= $notif['pesanan_masuk']->jml ?></span></a>
                             <ul class="collapse list-unstyled" id="transaksi">
-                                <li><a href="<?= base_url('Admin/cTransaksi') ?>">> <span>Pesanan Masuk</span></a></li>
-                                <li><a href="<?= base_url('Admin/cTransaksi/konfirmasi') ?>">> <span>Konfirmasi Pembayaran</span></a></li>
-                                <li><a href="<?= base_url('Admin/cTransaksi/diproses') ?>">> <span>Pesanan Diproses</span></a></li>
-                                <li><a href="<?= base_url('Admin/cTransaksi/dikirim') ?>">> <span>Pesanan Dikirim</span></a></li>
+                                <li><a href="<?= base_url('Admin/cTransaksi') ?>">> <span>Pesanan Masuk</span><span class="badge badge-success"><?= $notif['pesanan_masuk']->jml ?></span></a></li>
+                                <li><a href="<?= base_url('Admin/cTransaksi/konfirmasi') ?>">> <span>Konfirmasi Pembayaran</span><span class="badge badge-info"><?= $notif['konfirmasi']->jml ?></span></a></li>
+                                <li><a href="<?= base_url('Admin/cTransaksi/diproses') ?>">> <span>Pesanan Diproses</span><span class="badge badge-danger"><?= $notif['diproses']->jml ?></span></a></li>
+                                <li><a href="<?= base_url('Admin/cTransaksi/dikirim') ?>">> <span>Pesanan Dikirim</span><span class="badge badge-warning"><?= $notif['kirim']->jml ?></span></a></li>
                                 <li><a href="<?= base_url('Admin/cTransaksi/selesai') ?>">> <span>Pesanan Selesai</span></a></li>
                             </ul>
                         </li>

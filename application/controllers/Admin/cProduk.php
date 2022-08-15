@@ -9,15 +9,17 @@ class cProduk extends CI_Controller
     {
         parent::__construct();
         $this->load->model('mProduk');
+        $this->load->model('mTransaksi');
     }
 
     public function index()
     {
         $data = array(
-            'produk' => $this->mProduk->select()
+            'produk' => $this->mProduk->select(),
+            'notif' => $this->mTransaksi->notif()
         );
         $this->load->view('Admin/Layouts/head');
-        $this->load->view('Admin/Layouts/sidebar');
+        $this->load->view('Admin/Layouts/sidebar', $data);
         $this->load->view('Admin/produk', $data);
         $this->load->view('Admin/Layouts/footer');
     }
@@ -29,9 +31,11 @@ class cProduk extends CI_Controller
         $this->form_validation->set_rules('stok', 'Stok Produk', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-
+            $data = array(
+                'notif' => $this->mTransaksi->notif()
+            );
             $this->load->view('Admin/Layouts/head');
-            $this->load->view('Admin/Layouts/sidebar');
+            $this->load->view('Admin/Layouts/sidebar', $data);
             $this->load->view('Admin/createProduk');
             $this->load->view('Admin/Layouts/footer');
         } else {
@@ -86,10 +90,11 @@ class cProduk extends CI_Controller
 
             if (!$this->upload->do_upload('gambar')) {
                 $data = array(
-                    'produk' => $this->mProduk->edit($id)
+                    'produk' => $this->mProduk->edit($id),
+                    'notif' => $this->mTransaksi->notif()
                 );
                 $this->load->view('Admin/Layouts/head');
-                $this->load->view('Admin/Layouts/sidebar');
+                $this->load->view('Admin/Layouts/sidebar', $data);
                 $this->load->view('Admin/updateproduk', $data);
                 $this->load->view('Admin/Layouts/footer');
             } else {
@@ -120,10 +125,11 @@ class cProduk extends CI_Controller
             redirect('Admin/cProduk');
         }
         $data = array(
-            'produk' => $this->mProduk->edit($id)
+            'produk' => $this->mProduk->edit($id),
+            'notif' => $this->mTransaksi->notif()
         );
         $this->load->view('Admin/Layouts/head');
-        $this->load->view('Admin/Layouts/sidebar');
+        $this->load->view('Admin/Layouts/sidebar', $data);
         $this->load->view('Admin/updateproduk', $data);
         $this->load->view('Admin/Layouts/footer');
     }

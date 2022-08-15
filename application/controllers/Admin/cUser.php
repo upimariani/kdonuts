@@ -8,16 +8,18 @@ class cUser extends CI_Controller
     {
         parent::__construct();
         $this->load->model('mUser');
+        $this->load->model('mTransaksi');
     }
 
 
     public function index()
     {
         $data = array(
-            'user' => $this->mUser->select()
+            'user' => $this->mUser->select(),
+            'notif' => $this->mTransaksi->notif()
         );
         $this->load->view('Admin/Layouts/head');
-        $this->load->view('Admin/Layouts/sidebar');
+        $this->load->view('Admin/Layouts/sidebar', $data);
         $this->load->view('Admin/user', $data);
         $this->load->view('Admin/Layouts/footer');
     }
@@ -34,8 +36,11 @@ class cUser extends CI_Controller
 
 
         if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'notif' => $this->mTransaksi->notif()
+            );
             $this->load->view('Admin/Layouts/head');
-            $this->load->view('Admin/Layouts/sidebar');
+            $this->load->view('Admin/Layouts/sidebar', $data);
             $this->load->view('Admin/createuser');
             $this->load->view('Admin/Layouts/footer');
         } else {
@@ -68,10 +73,11 @@ class cUser extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data = array(
-                'user' => $this->mUser->edit($id)
+                'user' => $this->mUser->edit($id),
+                'notif' => $this->mTransaksi->notif()
             );
             $this->load->view('Admin/Layouts/head');
-            $this->load->view('Admin/Layouts/sidebar');
+            $this->load->view('Admin/Layouts/sidebar', $data);
             $this->load->view('Admin/updateuser', $data);
             $this->load->view('Admin/Layouts/footer');
         } else {

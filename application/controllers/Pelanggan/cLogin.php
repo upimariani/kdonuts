@@ -82,7 +82,7 @@ class cLogin extends CI_Controller
     {
         $this->session->unset_userdata('id');
         $this->session->set_flashdata('success', 'Anda Berhasil Logout!');
-
+        $this->cart->destroy();
         redirect('pelanggan/clogin');
     }
 }

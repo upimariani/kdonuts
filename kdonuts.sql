@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Agu 2022 pada 00.24
+-- Waktu pembuatan: 09 Agu 2022 pada 14.32
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -218,9 +218,12 @@ CREATE TABLE `pemesanan` (
 
 INSERT INTO `pemesanan` (`id_pemesanan`, `id_barang`, `id_transaksi`, `quantity`) VALUES
 ('45por', 'qr83F', '20220726U8KA0MPL', 3),
+('90jLN', 'PEzbm', '20220809BFVIUTSM', 16),
 ('Aw4kP', 'uKxoD', '20220726PJ4NFKIL', 1),
 ('dnw6k', 'uKxoD', '20220726U8KA0MPL', 1),
+('gpfzt', 'YDgch', '20220809BFVIUTSM', 21),
 ('iTEb6', 'qr83F', '20220726PJ4NFKIL', 1),
+('l7k6H', 'YDgch', '20220809RQOO7QBZ', 2),
 ('Le02a', 'PEzbm', '20220726U8KA0MPL', 1),
 ('StvOZ', 'uKxoD', '20220726NJ7ZQUGP', 1);
 
@@ -245,7 +248,9 @@ CREATE TABLE `pengiriman` (
 INSERT INTO `pengiriman` (`id_pengiriman`, `id_transaksi`, `id_ongkir`, `alamat`, `status_pengiriman`) VALUES
 (1, '20220726U8KA0MPL', 11, 'RT. 23 RW. 03 Desa/Kel. PAMIJAHAN ', 4),
 (2, '20220726PJ4NFKIL', 45, 'RT. 14 RW. 03 Desa/Kel. kuningan', 4),
-(3, '20220726NJ7ZQUGP', 84, 'RT. 14 RW. 34 Desa/Kel. kuningan', 4);
+(3, '20220726NJ7ZQUGP', 84, 'RT. 14 RW. 34 Desa/Kel. kuningan', 4),
+(4, '20220809BFVIUTSM', 19, 'RT. 12 RW. 03 Desa/Kel. LINK.KRAMAT JAYA RT/RW 007/003', 0),
+(5, '20220809RQOO7QBZ', 12, 'RT. 12 RW. 2 Desa/Kel. coba', 0);
 
 -- --------------------------------------------------------
 
@@ -271,7 +276,10 @@ INSERT INTO `penilaian_pelanggan` (`id_penilaian`, `id_pemesanan`, `info_penilai
 (3, 'Le02a', 2, 'crncy', '2022-07-26 11:39:58'),
 (4, 'iTEb6', 3, 'enak bangett', '2022-07-26 12:05:40'),
 (5, 'Aw4kP', 4, 'enakk', '2022-07-26 12:04:52'),
-(6, 'StvOZ', 1, 'not bad', '2022-07-26 12:10:31');
+(6, 'StvOZ', 1, 'not bad', '2022-07-26 12:10:31'),
+(7, 'gpfzt', 0, '', '0000-00-00 00:00:00'),
+(8, '90jLN', 0, '', '0000-00-00 00:00:00'),
+(9, 'l7k6H', 0, '', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -301,13 +309,13 @@ INSERT INTO `produk` (`id_barang`, `nama_barang`, `harga_barang`, `deskripsi`, `
 ('GCLOV', 'Kacang Panggang', '6500', 'Donat topping coklat yang berpadu dengan kacang panggang diatasnya membuat donat terasa renyah dan dijamin bikin ketagihan', 30, 'Kacang_Panggang.jpg'),
 ('i1wf7', 'Lemon Kopyor', '6500', 'Donat dengan topping lemon kopyor yang dihias dengan coklat yang bertuliskan Iyou', 29, 'Lemon_Kopyor.jpg'),
 ('OAx8J', 'Choco Kopyor', '6500', 'Donat dengan topping choco kopyor yang dihias dengan susu berbentuk wajah dan terdapat jelly dibagian matanya', 30, 'Choco_Kopyor.jpg'),
-('PEzbm', 'Almond', '6500', 'Donat topping chocolate yang menyelimuti bagian atas dan beberapa potongan almond', 29, 'Almond.jpg'),
+('PEzbm', 'Almond', '6500', 'Donat topping chocolate yang menyelimuti bagian atas dan beberapa potongan almond', 13, 'Almond.jpg'),
 ('qr83F', 'White Forest', '6500', 'Donat dengan topping cokelat yang dilapisi dengan keju diatasnya', 26, 'White_Forest.jpg'),
 ('tMbg6', 'Black Forest', '6500', 'Donat dengan lapisan black forest', 30, 'Black_Forest.jpg'),
 ('TwG4u', 'Blueberry', '6500', 'Donat dengan topping bluberry yang menyelimuti bagian atas donat', 28, 'Blueberry.jpg'),
 ('uKxoD', 'Choco Vanilla', '6500', 'Donat topping vanilla dengan saus chocolate berbentuk kotak-kota diatasnya', 22, 'Choco_Vanilla.jpg'),
 ('vE7Cg', 'Choco Banana', '6500', 'Donat dengan topping choco dan dihias selai pisang diatasnya yang membentuk bunga', 30, 'Choco_Banana.jpg'),
-('YDgch', 'Red Strawberry', '6500', 'Donat dengan topping strawberry yang menggoda dan dihias dengan selai strawberry yang berbentuk setangkai daun dan juga diberi meses diatasnya', 30, 'Red_Strawberry.jpg'),
+('YDgch', 'Red Strawberry', '6500', 'Donat dengan topping strawberry yang menggoda dan dihias dengan selai strawberry yang berbentuk setangkai daun dan juga diberi meses diatasnya', 7, 'Red_Strawberry.jpg'),
 ('ZGDfr', 'Cappucino', '6500', 'Donat cokelat dengan topping cappucino', 30, 'Cappucino.jpg');
 
 -- --------------------------------------------------------
@@ -331,7 +339,9 @@ CREATE TABLE `transaksi` (
 INSERT INTO `transaksi` (`id_transaksi`, `id_user`, `total_order`, `tanggal_order`, `pembayaran`) VALUES
 ('20220726NJ7ZQUGP', 8, '19500', '2022-07-26', '31084499740-bukti_transfer1.jpg'),
 ('20220726PJ4NFKIL', 8, '25000', '2022-07-26', '31084499740-bukti_transfer.jpg'),
-('20220726U8KA0MPL', 8, '44500', '2022-07-26', 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-13.jpg');
+('20220726U8KA0MPL', 8, '44500', '2022-07-26', 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-13.jpg'),
+('20220809BFVIUTSM', 13, '252000', '2022-08-09', NULL),
+('20220809RQOO7QBZ', 13, '25000', '2022-08-09', NULL);
 
 -- --------------------------------------------------------
 
@@ -452,13 +462,13 @@ ALTER TABLE `ongkir`
 -- AUTO_INCREMENT untuk tabel `pengiriman`
 --
 ALTER TABLE `pengiriman`
-  MODIFY `id_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `penilaian_pelanggan`
 --
 ALTER TABLE `penilaian_pelanggan`
-  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

@@ -13,60 +13,66 @@ class cTransaksi extends CI_Controller
     public function index()
     {
         $data = array(
-            'transaksi' => $this->mTransaksi->transaksi()
+            'transaksi' => $this->mTransaksi->transaksi(),
+            'notif' => $this->mTransaksi->notif()
         );
         $this->load->view('Admin/Layouts/head');
-        $this->load->view('Admin/Layouts/sidebar');
+        $this->load->view('Admin/Layouts/sidebar', $data);
         $this->load->view('Admin/pesanan_masuk', $data);
         $this->load->view('Admin/Layouts/footer');
     }
     public function konfirmasi()
     {
         $data = array(
-            'transaksi' => $this->mTransaksi->transaksi()
+            'transaksi' => $this->mTransaksi->transaksi(),
+            'notif' => $this->mTransaksi->notif()
         );
         $this->load->view('Admin/Layouts/head');
-        $this->load->view('Admin/Layouts/sidebar');
+        $this->load->view('Admin/Layouts/sidebar', $data);
         $this->load->view('Admin/konfirmasi_pembayaran', $data);
         $this->load->view('Admin/Layouts/footer');
     }
     public function diproses()
     {
         $data = array(
-            'transaksi' => $this->mTransaksi->transaksi()
+            'transaksi' => $this->mTransaksi->transaksi(),
+            'notif' => $this->mTransaksi->notif()
         );
         $this->load->view('Admin/Layouts/head');
-        $this->load->view('Admin/Layouts/sidebar');
+        $this->load->view('Admin/Layouts/sidebar', $data);
         $this->load->view('Admin/pesanan_diproses', $data);
         $this->load->view('Admin/Layouts/footer');
     }
     public function dikirim()
     {
         $data = array(
-            'transaksi' => $this->mTransaksi->transaksi()
+            'transaksi' => $this->mTransaksi->transaksi(),
+            'notif' => $this->mTransaksi->notif()
         );
         $this->load->view('Admin/Layouts/head');
-        $this->load->view('Admin/Layouts/sidebar');
+        $this->load->view('Admin/Layouts/sidebar', $data);
         $this->load->view('Admin/pesanan_dikirim', $data);
         $this->load->view('Admin/Layouts/footer');
     }
     public function selesai()
     {
         $data = array(
-            'transaksi' => $this->mTransaksi->transaksi()
+            'transaksi' => $this->mTransaksi->transaksi(),
+            'notif' => $this->mTransaksi->notif()
         );
         $this->load->view('Admin/Layouts/head');
-        $this->load->view('Admin/Layouts/sidebar');
+        $this->load->view('Admin/Layouts/sidebar', $data);
         $this->load->view('Admin/pesanan_selesai', $data);
         $this->load->view('Admin/Layouts/footer');
     }
     public function detail_pesanan($id)
     {
         $data = array(
-            'detail' => $this->mTransaksi->detail_pesanan($id)
+            'detail' => $this->mTransaksi->detail_pesanan($id),
+            'notif' => $this->mTransaksi->notif()
         );
         $this->load->view('Admin/Layouts/head');
-        $this->load->view('Admin/Layouts/sidebar');
+        $this->load->view('Admin/Layouts/sidebar', $data);
         $this->load->view('Admin/detail_pesanan', $data);
         $this->load->view('Admin/Layouts/footer');
     }

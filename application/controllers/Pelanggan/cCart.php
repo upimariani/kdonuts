@@ -34,17 +34,13 @@ class cCart extends CI_Controller
         $this->cart->insert($data);
         redirect('pelanggan/ckatalog');
     }
-    public function update_cart()
+    public function update_cart($rowid, $qty)
     {
-        $i = 1;
-        foreach ($this->cart->contents() as $items) {
-            $data = array(
-                'rowid'  => $items['rowid'],
-                'qty'    => $this->input->post($i . '[qty]')
-            );
-            $this->cart->update($data);
-            $i++;
-        }
+        $data = array(
+            'rowid'  => $rowid,
+            'qty'    => $qty
+        );
+        $this->cart->update($data);
         redirect('Pelanggan/cCart');
     }
     public function delete($rowid)

@@ -7,7 +7,10 @@ class mCheckout extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('user');
+        $this->db->join('ongkir', 'user.id_ongkir = ongkir.id_ongkir', 'left');
+        $this->db->join('kecamatan', 'kecamatan.id_kecamatan = ongkir.id_kecamatan', 'left');
         $this->db->where('id_user', $this->session->userdata('id'));
+
         return $this->db->get()->row();
     }
 

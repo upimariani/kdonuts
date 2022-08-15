@@ -13,6 +13,14 @@ class mTransaksi extends CI_Model
 		return $data;
 	}
 
+	public function notif()
+	{
+		$data['pesanan_masuk'] = $this->db->query("SELECT COUNT(tanggal_order) as jml FROM `transaksi` JOIN pengiriman ON transaksi.id_transaksi=pengiriman.id_transaksi WHERE status_pengiriman='0'")->row();
+		$data['konfirmasi'] = $this->db->query("SELECT COUNT(tanggal_order) as jml FROM `transaksi` JOIN pengiriman ON transaksi.id_transaksi=pengiriman.id_transaksi WHERE status_pengiriman='1'")->row();
+		$data['diproses'] = $this->db->query("SELECT COUNT(tanggal_order) as jml FROM `transaksi` JOIN pengiriman ON transaksi.id_transaksi=pengiriman.id_transaksi WHERE status_pengiriman='2'")->row();
+		$data['kirim'] = $this->db->query("SELECT COUNT(tanggal_order) as jml FROM `transaksi` JOIN pengiriman ON transaksi.id_transaksi=pengiriman.id_transaksi WHERE status_pengiriman='3'")->row();
+		return $data;
+	}
 	//status order pelanggan
 	public function status_order()
 	{

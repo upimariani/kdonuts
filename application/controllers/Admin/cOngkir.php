@@ -9,16 +9,18 @@ class cOngkir extends CI_Controller
         parent::__construct();
 
         $this->load->model('mOngkir');
+        $this->load->model('mTransaksi');
     }
 
     public function index()
     {
         $data = array(
             'ongkir' => $this->mOngkir->select(),
-            'kecamatan' => $this->mOngkir->select_kecamatan()
+            'kecamatan' => $this->mOngkir->select_kecamatan(),
+            'notif' => $this->mTransaksi->notif()
         );
         $this->load->view('Admin/Layouts/head');
-        $this->load->view('Admin/Layouts/sidebar');
+        $this->load->view('Admin/Layouts/sidebar', $data);
         $this->load->view('Admin/ongkir', $data);
         $this->load->view('Admin/Layouts/footer');
     }

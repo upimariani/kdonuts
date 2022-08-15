@@ -8,16 +8,18 @@ class cDiskon extends CI_Controller
     {
         parent::__construct();
         $this->load->model('mProduk');
+        $this->load->model('mTransaksi');
     }
 
 
     public function index()
     {
         $data = array(
-            'diskon' => $this->mProduk->select_diskon()
+            'diskon' => $this->mProduk->select_diskon(),
+            'notif' => $this->mTransaksi->notif()
         );
         $this->load->view('Admin/Layouts/head');
-        $this->load->view('Admin/Layouts/sidebar');
+        $this->load->view('Admin/Layouts/sidebar', $data);
         $this->load->view('Admin/diskon', $data);
         $this->load->view('Admin/Layouts/footer');
     }
@@ -31,10 +33,11 @@ class cDiskon extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data = array(
-                'produk' => $this->mProduk->produk()
+                'produk' => $this->mProduk->produk(),
+                'notif' => $this->mTransaksi->notif()
             );
             $this->load->view('Admin/Layouts/head');
-            $this->load->view('Admin/Layouts/sidebar');
+            $this->load->view('Admin/Layouts/sidebar', $data);
             $this->load->view('Admin/creatediskon', $data);
             $this->load->view('Admin/Layouts/footer');
         } else {
@@ -55,10 +58,11 @@ class cDiskon extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data = array(
                 'produk' => $this->mProduk->produk(),
-                'diskon' => $this->mProduk->edit_diskon($id_diskon)
+                'diskon' => $this->mProduk->edit_diskon($id_diskon),
+                'notif' => $this->mTransaksi->notif()
             );
             $this->load->view('Admin/Layouts/head');
-            $this->load->view('Admin/Layouts/sidebar');
+            $this->load->view('Admin/Layouts/sidebar', $data);
             $this->load->view('Admin/updateDiskon', $data);
             $this->load->view('Admin/Layouts/footer');
         } else {
