@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Agu 2022 pada 14.32
--- Versi server: 10.4.6-MariaDB
--- Versi PHP: 7.3.9
+-- Waktu pembuatan: 07 Feb 2023 pada 15.12
+-- Versi server: 10.4.24-MariaDB
+-- Versi PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -66,26 +65,27 @@ INSERT INTO `diskon` (`id_diskon`, `id_barang`, `nama_diskon`, `diskon`, `time`)
 
 CREATE TABLE `kecamatan` (
   `id_kecamatan` int(11) NOT NULL,
-  `nama_kecamatan` varchar(125) NOT NULL
+  `nama_kecamatan` varchar(125) NOT NULL,
+  `kode_pos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `kecamatan`
 --
 
-INSERT INTO `kecamatan` (`id_kecamatan`, `nama_kecamatan`) VALUES
-(1, 'Ciawigebang'),
-(4, 'Cigandamekar'),
-(5, 'Cigugur'),
-(6, 'Cilimus'),
-(7, 'Cipicung'),
-(8, 'Jalaksana'),
-(9, 'Kadugede'),
-(10, 'Kramatmulya'),
-(11, 'Kuningan'),
-(12, 'Lebakwangi'),
-(13, 'Nusaherang'),
-(14, 'Sindangagung');
+INSERT INTO `kecamatan` (`id_kecamatan`, `nama_kecamatan`, `kode_pos`) VALUES
+(1, 'Ciawigebang', 4551),
+(4, 'Cigandamekar', 45534),
+(5, 'Cigugur', 45511),
+(6, 'Cilimus', 45321),
+(7, 'Cipicung', 44231),
+(8, 'Jalaksana', 44421),
+(9, 'Kadugede', 44312),
+(10, 'Kramatmulya', 45551),
+(11, 'Kuningan', 45531),
+(12, 'Lebakwangi', 41123),
+(13, 'Nusaherang', 41998),
+(14, 'Sindangagung', 41112);
 
 -- --------------------------------------------------------
 
@@ -263,23 +263,27 @@ CREATE TABLE `penilaian_pelanggan` (
   `id_pemesanan` varchar(10) NOT NULL,
   `info_penilaian` int(11) NOT NULL,
   `review` text NOT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `balas` text NOT NULL,
+  `harga_produk` int(11) NOT NULL,
+  `kec_pengiriman` int(11) NOT NULL,
+  `kualitas_pelayanan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `penilaian_pelanggan`
 --
 
-INSERT INTO `penilaian_pelanggan` (`id_penilaian`, `id_pemesanan`, `info_penilaian`, `review`, `tanggal`) VALUES
-(1, '45por', 5, 'the best', '2022-07-26 11:40:06'),
-(2, 'dnw6k', 4, 'enak banget', '2022-07-26 11:39:49'),
-(3, 'Le02a', 2, 'crncy', '2022-07-26 11:39:58'),
-(4, 'iTEb6', 3, 'enak bangett', '2022-07-26 12:05:40'),
-(5, 'Aw4kP', 4, 'enakk', '2022-07-26 12:04:52'),
-(6, 'StvOZ', 1, 'not bad', '2022-07-26 12:10:31'),
-(7, 'gpfzt', 0, '', '0000-00-00 00:00:00'),
-(8, '90jLN', 0, '', '0000-00-00 00:00:00'),
-(9, 'l7k6H', 0, '', '0000-00-00 00:00:00');
+INSERT INTO `penilaian_pelanggan` (`id_penilaian`, `id_pemesanan`, `info_penilaian`, `review`, `tanggal`, `balas`, `harga_produk`, `kec_pengiriman`, `kualitas_pelayanan`) VALUES
+(1, '45por', 5, 'the best', '2023-02-07 14:10:19', '0', 5, 5, 5),
+(2, 'dnw6k', 4, 'enak banget', '2023-02-07 14:10:19', '0', 5, 5, 5),
+(3, 'Le02a', 2, 'crncy', '2023-02-07 14:10:19', '0', 5, 5, 5),
+(4, 'iTEb6', 3, 'enak bangett', '2023-02-07 14:10:19', '0', 5, 5, 5),
+(5, 'Aw4kP', 4, 'enakk', '2023-02-07 14:10:19', '0', 5, 5, 5),
+(6, 'StvOZ', 1, 'not bad', '2023-02-07 14:10:31', 'good', 5, 5, 5),
+(7, 'gpfzt', 0, '0', '2023-02-07 14:10:19', '0', 0, 0, 0),
+(8, '90jLN', 0, '0', '2023-02-07 14:10:19', '0', 0, 0, 0),
+(9, 'l7k6H', 0, '0', '2023-02-07 14:10:19', '0', 0, 0, 0);
 
 -- --------------------------------------------------------
 

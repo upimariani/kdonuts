@@ -69,7 +69,7 @@
                                             <?php
                                             foreach ($kecamatan as $key => $value) {
                                             ?>
-                                                <option value="<?= $value->id_kecamatan ?>"><?= $value->nama_kecamatan ?></option>
+                                                <option data-kode="<?= $value->kode_pos ?>" value="<?= $value->id_kecamatan ?>"><?= $value->nama_kecamatan ?></option>
                                             <?php
                                             }
                                             ?>
@@ -111,7 +111,7 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label>Kode POS</label>
-                                        <input type="text" name="kode_pos" class="form-control rounded-left">
+                                        <input type="text" class="kode_pos" name="kode_pos" class="form-control rounded-left">
                                         <?= form_error('kode_pos', ' <small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
@@ -177,6 +177,15 @@
                 });
                 return false;
             });
+        });
+    </script>
+    <script>
+        console.log = function() {}
+        $("#kecamatan").on('change', function() {
+            $(".kode_pos").html($(this).find(':selected').attr('data-kode'));
+            $(".kode_pos").val($(this).find(':selected').attr('data-kode'));
+
+
         });
     </script>
 </body>

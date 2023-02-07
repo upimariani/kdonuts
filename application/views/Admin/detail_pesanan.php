@@ -75,7 +75,7 @@
 												<td><?= $value->quantity ?></td>
 												<td><?= $value->nama_barang ?></td>
 												<td>Rp. <?= number_format($value->harga_barang)  ?></td>
-												<td>Rp. <?= number_format($value->harga_barang * $value->quantity)  ?></td>
+												<td>Rp. <?= number_format(($value->harga_barang - ($value->diskon / 100 * $value->harga_barang)) * $value->quantity)  ?></td>
 											</tr>
 										<?php
 										}

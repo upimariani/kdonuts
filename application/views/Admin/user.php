@@ -17,7 +17,7 @@
         <?php
         }
         ?>
-
+        <a href="<?= base_url('Admin/cUser/createuser') ?>" class="btn btn-success mb-3">Create User</a>
         <!-- row -->
         <div class="row">
             <!-- table section -->

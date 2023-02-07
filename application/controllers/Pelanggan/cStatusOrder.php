@@ -86,6 +86,9 @@ class cStatusOrder extends CI_Controller
         $data = array(
             'id_penilaian' => $this->input->post('id'),
             'info_penilaian' => $this->input->post('rating'),
+            'harga_produk' => $this->input->post('rating_harga'),
+            'kec_pengiriman' => $this->input->post('rating_pengiriman'),
+            'kualitas_pelayanan' => $this->input->post('rating_pelayanan'),
             'review' => $this->input->post('review')
         );
         $this->db->where('id_penilaian', $data['id_penilaian']);

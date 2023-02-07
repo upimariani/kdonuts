@@ -37,6 +37,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Nama Kecamatan</th>
+                                        <th>Kode Pos</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -48,6 +49,7 @@
                                         <tr>
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->nama_kecamatan ?></td>
+                                            <td><?= $value->kode_pos ?></td>
                                             <td><a href="<?= base_url('admin/congkir/delete_kec/' . $value->id_kecamatan) ?>" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#kecamatan<?= $value->id_kecamatan ?>" class="btn btn-warning"><i class="fa fa-edit"></i></button>
                                             </td>
@@ -223,7 +225,9 @@ foreach ($ongkir as $key => $value) {
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="kecamatan" placeholder="Masukkan Nama Kecamatan" required>
                     </div>
-
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="kode_pos" placeholder="Masukkan Kode Pos" required>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -57,7 +57,8 @@ class cOngkir extends CI_Controller
     public function insertkecamatan()
     {
         $data = array(
-            'nama_kecamatan' => $this->input->post('kecamatan')
+            'nama_kecamatan' => $this->input->post('kecamatan'),
+            'kode_pos' => $this->input->post('kode_pos')
         );
         $this->mOngkir->insert_kecamatan($data);
         $this->session->set_flashdata('success', 'Data Kecamatan Berhasil Ditambahkan!');
@@ -66,7 +67,8 @@ class cOngkir extends CI_Controller
     public function updatekecamatan($id)
     {
         $data = array(
-            'nama_kecamatan' => $this->input->post('kecamatan')
+            'nama_kecamatan' => $this->input->post('kecamatan'),
+            'kode_pos' => $this->input->post('kode_pos')
         );
         $this->mOngkir->updatekecamatan($id, $data);
         $this->session->set_flashdata('success', 'Data Kecamatan Berhasil Diperbaharui!');

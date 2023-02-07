@@ -98,6 +98,18 @@ class mLaporan extends CI_Model
     {
         return $this->db->query("SELECT SUM(total_order) as total, tanggal_order FROM `transaksi` GROUP BY tanggal_order")->result();
     }
+    public function grafik_produk_terjual()
+    {
+        return $this->db->query("SELECT SUM(quantity) as jml, nama_barang FROM `pemesanan` JOIN produk ON pemesanan.id_barang=produk.id_barang GROUP BY pemesanan.id_barang ORDER BY jml DESC")->result();
+    }
+    public function lap_penilaian_pelanggan()
+    {
+        return $this->db->query("SELECT * FROM `penilaian_pelanggan` JOIN pemesanan ON penilaian_pelanggan.id_pemesanan=pemesanan.id_pemesanan JOIN produk ON produk.id_barang = pemesanan.id_barang JOIN transaksi ON transaksi.id_transaksi=pemesanan.id_transaksi JOIN user ON transaksi.id_user=user.id_user WHERE info_penilaian != '0'")->result();
+    }
+    public function produk_tidak_laku()
+    {
+        return $this->db->query("SELECT produk.id_barang, nama_barang, quantity FROM pemesanan RIGHT JOIN produk ON pemesanan.id_barang = produk.id_barang;")->result();
+    }
 }
 
 

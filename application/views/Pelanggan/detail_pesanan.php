@@ -77,7 +77,21 @@
                                         <form action="<?= base_url('pelanggan/cstatusorder/rating/' . $value->id_transaksi) ?>" method="POST">
                                             <li><?= $value->nama_barang ?><span>Rp. <?= number_format(($value->harga_barang - ($value->diskon / 100 * $value->harga_barang)) * $value->quantity) ?></span>
                                                 <input type="hidden" name="id" value="<?= $value->id_penilaian ?>">
+
                                                 <input class="rating-input" type="text" name="rating" title="" />
+                                                <h4>Kualitas Produk</h4>
+                                            </li>
+                                            <li>
+                                                <input class="rating-input" type="text" name="rating_harga" title="" />
+                                                <h4>Harga Produk</h4>
+                                            </li>
+                                            <li>
+                                                <input class="rating-input" type="text" name="rating_pengiriman" title="" />
+                                                <h4>Kecepatan Pengiriman</h4>
+                                            </li>
+                                            <li>
+                                                <input class="rating-input" type="text" name="rating_pelayanan" title="" />
+                                                <h4>Kualitas Pelayanan</h4>
                                             </li>
                                             <textarea class="form-control" name="review" rows="5" placeholder="Tuliskan review anda*)" required></textarea>
                                             <button class="site-btn" type="submit">Nilai</button>
