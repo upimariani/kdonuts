@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Feb 2023 pada 15.12
+-- Waktu pembuatan: 02 Apr 2023 pada 00.16
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -42,7 +42,7 @@ CREATE TABLE `diskon` (
 INSERT INTO `diskon` (`id_diskon`, `id_barang`, `nama_diskon`, `diskon`, `time`) VALUES
 (9, 'uKxoD', '0', 0, '2022-07-19 12:05:32'),
 (10, 'GCLOV', '0', 0, '2022-07-19 12:06:05'),
-(11, 'PEzbm', '0', 0, '2022-07-19 12:06:31'),
+(11, 'PEzbm', 'sale of day', 5, '2022-07-19 12:06:31'),
 (12, 'tMbg6', '0', 0, '2022-07-19 12:06:52'),
 (13, 'qr83F', '0', 0, '2022-07-19 12:07:12'),
 (14, 'ZGDfr', '0', 0, '2022-07-19 12:07:38'),
